@@ -4,7 +4,6 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Image,
   TextInput,
 } from 'react-native';
 
@@ -45,6 +44,8 @@ const Dice = props => {
   const removeDice = index => {
     if (diceArray.length > 0) {
       const updatedDiceArray = diceArray.filter((_, i) => i !== index);
+      const updatedRollResults = rollResults.filter((_, i) => i !== index);
+      setRollResults(updatedRollResults);
       setDiceArray(updatedDiceArray);
     }
   };
@@ -69,12 +70,14 @@ const Dice = props => {
           <TouchableOpacity key={index} onPress={() => removeDice(index)}>
             <View key={index}>
               <View style={styles.diceContainer}>
-                {dice.sides === 6 ? (
-                  <D6 />
+                {dice.sides === 4 ? (
+                  <D4 />
                 ) : dice.sides === 20 ? (
                   <D20 />
+                ) : dice.sides === 6 ? (
+                  <D6 />
                 ) : (
-                  <D4 />
+                  <D6 />
                 )}
                 <Text style={styles.diceText}>{rollResults[index]}</Text>
               </View>
