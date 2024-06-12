@@ -1,47 +1,42 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-  Image,
-} from 'react-native';
+import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 import {colors} from '../config/colors';
 
 const Select = ({data, onClick}) => {
   const getImageByScreenName = name => {
     switch (name) {
       case 'Magic Ball':
-        return require('../assets/magicBall.png');
+        return require('../assets/images/magicBall.png');
       case 'RNG':
-        return require('../assets/RNG.png');
+        return require('../assets/images/RNG.png');
+      case 'Dice':
+        return require('../assets/images/dice.png');
+      case 'Coin Flip':
+        return require('../assets/images/heads.png');
       default:
-        return require('../assets/missing.png');
+        return require('../assets/images/missing.png');
     }
   };
 
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        {data.map((item, index) => (
-          <View>
-            <Text style={styles.header} key={index}>
-              {item.name}
-            </Text>
-            <TouchableOpacity
-              key={index}
-              style={styles.box}
-              onPress={() => onClick(item)}>
-              <Image
-                style={styles.Image}
-                source={getImageByScreenName(item.name)}
-              />
-            </TouchableOpacity>
-          </View>
-        ))}
-      </View>
-    </ScrollView>
+    <View style={styles.container}>
+      {data.map((item, index) => (
+        <View>
+          <Text style={styles.header} key={index + '-' + item.name + '-header'}>
+            {item.name}
+          </Text>
+          <TouchableOpacity
+            key={index + '-' + item.name + '-button'}
+            style={styles.box}
+            onPress={() => onClick(item)}>
+            <Image
+              style={styles.Image}
+              source={getImageByScreenName(item.name)}
+            />
+          </TouchableOpacity>
+        </View>
+      ))}
+    </View>
   );
 };
 

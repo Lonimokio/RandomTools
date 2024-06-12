@@ -1,16 +1,26 @@
 import React, {useState} from 'react';
-import {View, TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
 import {colors} from '../config/colors'; // Import colors from separate color file
 
 import MagicBall from '../screens/MagicBall';
 import Select from '../screens/Select';
 import RNG from '../screens/RNG';
+import Dice from '../screens/Dice';
+import CoinFlip from '../screens/CoinFlip';
 
 const Navigation = () => {
   const screens = [
     {name: 'Magic Ball', component: MagicBall},
     {name: 'Select', component: Select},
     {name: 'RNG', component: RNG},
+    {name: 'Dice', component: Dice},
+    {name: 'Coin Flip', component: CoinFlip},
   ];
   const [currentScreen, setCurrentScreen] = useState(screens[0].name);
 
@@ -30,6 +40,10 @@ const Navigation = () => {
         );
       case 'RNG':
         return <RNG />;
+      case 'Dice':
+        return <Dice />;
+      case 'Coin Flip':
+        return <CoinFlip />;
       default:
         return null;
     }
@@ -41,7 +55,7 @@ const Navigation = () => {
           <Text style={styles.menuIcon}>☰</Text>
         </TouchableOpacity>
       </View>
-      {renderScreen()}
+      <ScrollView style={styles.scrollContainer}>{renderScreen()}</ScrollView>
     </View>
   );
 };
@@ -56,6 +70,7 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: colors.background,
   },
+  scrollContainer: {},
   menuBar: {
     backgroundColor: colors.primary,
     width: '100%',
@@ -64,7 +79,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 60,
     zIndex: 1,
   },
   menuIcon: {
