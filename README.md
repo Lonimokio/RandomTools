@@ -38,6 +38,6 @@ React Native - for cross-platform mobile app development
 JavaScript - core language for logic and UI
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the GPL License - see the LICENSE file for details.
 
 
